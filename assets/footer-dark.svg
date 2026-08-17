@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 190" width="1200" height="190" role="img" aria-label="Thanks for visiting">
+  <title>Let's build</title>
+  <defs>
+    <style><![CDATA[
+      svg{--bg0:#04060d;--bg1:#0a1022;--bg2:#080614;--ink:#e8eefc;--muted:#8ea0c4;--c1:#22d3ee;--c2:#8b5cf6;--c3:#f472b6;--panel:rgba(12,18,36,.72);--stroke:rgba(120,190,255,.18);--chip:rgba(120,190,255,.07);--chipStroke:rgba(120,190,255,.22);--grid:rgba(120,190,255,.10);--glow:#9fd8ff;}
+      .w{animation:wave linear infinite}
+      @keyframes wave{from{transform:translateX(0)}to{transform:translateX(-600px)}}
+      .t1{font-family:'Segoe UI',Inter,system-ui,-apple-system,'Helvetica Neue',sans-serif;font-size:24px;font-weight:700;fill:var(--ink)}
+      .t2{font-family:'JetBrains Mono','Fira Code','SFMono-Regular',ui-monospace,'DejaVu Sans Mono',monospace;font-size:14px;fill:var(--muted)}
+      .heart{animation:beat 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+      @keyframes beat{0%,100%{transform:scale(1)}25%{transform:scale(1.18)}45%{transform:scale(1)}}
+      .rise{opacity:0;animation:rise .8s ease-out forwards}
+      .r2{animation-delay:.25s}
+      @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+      @media (prefers-reduced-motion: reduce){*{animation:none !important}.rise{opacity:1}}
+    ]]></style>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="var(--c1)"/><stop offset=".5" stop-color="var(--c2)"/><stop offset="1" stop-color="var(--c3)"/>
+    </linearGradient>
+    <clipPath id="fc"><rect width="1200" height="190" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#fc)">
+    <rect width="1200" height="190" fill="var(--bg1)"/>
+    <g class="w" style="animation-duration:14s" opacity=".28">
+      <path d="M0 118 q150 -34 300 0 t300 0 t300 0 t300 0 t300 0 V190 H0Z" fill="url(#g1)"/>
+    </g>
+    <g class="w" style="animation-duration:9s" opacity=".38">
+      <path d="M0 138 q150 -28 300 0 t300 0 t300 0 t300 0 t300 0 V190 H0Z" fill="url(#g1)"/>
+    </g>
+    <g class="w" style="animation-duration:6s" opacity=".55">
+      <path d="M0 158 q150 -22 300 0 t300 0 t300 0 t300 0 t300 0 V190 H0Z" fill="url(#g1)"/>
+    </g>
+    <text class="t1 rise" x="600" y="66" text-anchor="middle">Thanks for scrolling — let’s build something</text>
+    <text class="t2 rise r2" x="600" y="96" text-anchor="middle">open to collaborations, freelance work and open-source contributions</text>
+    <g class="heart" transform="translate(600,120)">
+      <path d="M0 8 C-9 0 -13 -5 -13 -9 A6 6 0 0 1 0 -12 A6 6 0 0 1 13 -9 C13 -5 9 0 0 8Z" fill="var(--c3)"/>
+    </g>
+  </g>
+</svg>
