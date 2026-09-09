@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700" role="img" aria-label="Showreel - a quick tour of the projects I build">
+  <title>Showreel</title>
+  <defs>
+    <style><![CDATA[
+      svg{--bg0:#04060d;--bg1:#0a1022;--bg2:#080614;--ink:#e8eefc;--muted:#8ea0c4;--c1:#22d3ee;--c2:#8b5cf6;--c3:#f472b6;--panel:rgba(12,18,36,.72);--stroke:rgba(120,190,255,.18);--chip:rgba(120,190,255,.07);--chipStroke:rgba(120,190,255,.22);--grid:rgba(120,190,255,.10);--glow:#9fd8ff;}
+      .bezel{fill:var(--bg0)}
+      .panel{fill:var(--bg1);stroke:var(--stroke);stroke-width:1.5}
+      .label{font-family:'JetBrains Mono','Fira Code','SFMono-Regular',ui-monospace,'DejaVu Sans Mono',monospace;font-size:15px;fill:var(--muted)}
+      .ring{fill:none;stroke:var(--c1);stroke-width:4}
+      .tri{fill:var(--c1)}
+      .t1{font-family:'Segoe UI',Inter,system-ui,-apple-system,'Helvetica Neue',sans-serif;font-size:26px;font-weight:700;fill:var(--ink)}
+      .t2{font-family:'JetBrains Mono','Fira Code','SFMono-Regular',ui-monospace,'DejaVu Sans Mono',monospace;font-size:14.5px;fill:var(--muted)}
+    ]]></style>
+  </defs>
+  <rect class="bezel" width="800" height="700"/>
+  <rect class="panel" x="32" y="32" width="736" height="636" rx="28"/>
+  <text class="label" x="64" y="80">SHOWREEL — A QUICK TOUR</text>
+  <circle class="ring" cx="400" cy="360" r="74"/>
+  <path class="tri" d="M384 322 l70 38 -70 38Z"/>
+  <text class="t1" x="400" y="548" text-anchor="middle">A quick tour of the projects I build</text>
+  <text class="t2" x="400" y="580" text-anchor="middle">POS &middot; fintech &middot; Linux tools &middot; mobile</text>
+  <text class="t2" x="400" y="634" text-anchor="middle">click to play the demo</text>
+</svg>

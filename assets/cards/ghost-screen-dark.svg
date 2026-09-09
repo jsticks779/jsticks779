@@ -6,13 +6,8 @@
       .name{font-family:'Segoe UI',Inter,system-ui,-apple-system,'Helvetica Neue',sans-serif;font-size:21px;font-weight:700;fill:var(--ink)}
       .desc{font-family:'Segoe UI',Inter,system-ui,-apple-system,'Helvetica Neue',sans-serif;font-size:13.5px;fill:var(--muted)}
       .meta{font-family:'JetBrains Mono','Fira Code','SFMono-Regular',ui-monospace,'DejaVu Sans Mono',monospace;font-size:12px;fill:var(--muted)}
-      .glyph{fill:none;stroke:url(#g);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;color:var(--c2)}
-      .halo{opacity:.14}
+      .glyph{fill:none;stroke:var(--c1);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;color:var(--c1)}
     ]]></style>
-    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="480" y2="168">
-      <stop offset="0" stop-color="var(--c1)"/><stop offset=".55" stop-color="var(--c2)"/><stop offset="1" stop-color="var(--c3)"/>
-    </linearGradient>
-    <radialGradient id="halo"><stop offset="0" stop-color="var(--c2)" stop-opacity="1"/><stop offset="1" stop-color="var(--c2)" stop-opacity="0"/></radialGradient>
     <clipPath id="cc"><rect x="2" y="2" width="476" height="164" rx="16"/></clipPath>
   </defs>
   <g clip-path="url(#cc)">
@@ -20,12 +15,11 @@
     <rect x="2" y="2" width="476" height="164" rx="16" fill="var(--bg1)" opacity=".55"/>
 
     <g transform="translate(410,74)">
-      <circle class="halo" r="40" fill="url(#halo)"/>
       <g class="glyph"><path d="M-14 16V0a14 14 0 0 1 28 0v16l-5-4-5 4-4-4-5 4-5-4z"/><circle cx="-5" cy="-2" r="2.2" fill="currentColor" stroke="none"/><circle cx="5" cy="-2" r="2.2" fill="currentColor" stroke="none"/></g>
     </g>
 
     <text class="name" x="28" y="52">Ghost Screen</text>
-    <line x1="28" y1="66" x2="250" y2="66" stroke="url(#g)" stroke-width="1.5" opacity=".45"/>
+    <line x1="28" y1="66" x2="250" y2="66" stroke="var(--c1)" stroke-width="1.5" opacity=".45"/>
     <text class="desc" x="28" y="94">Animated holographic screensaver overlay</text>
     <text class="desc" x="28" y="114">for Linux & Windows. Toggle with Ctrl+3.</text>
 

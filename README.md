@@ -19,6 +19,24 @@
   <img alt="Open to work" src="https://img.shields.io/badge/Open%20to-Collaboration%20%C2%B7%20Freelance-10b981?style=flat-square">
 </p>
 
+<!-- ══════════════════════════ REEL ══════════════════════════ -->
+
+## Showreel
+
+<p align="center">
+  <a href="assets/showreel.mp4">
+    <picture>
+      <source media="(prefers-color-scheme: dark)"  srcset="assets/showreel-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="assets/showreel-light.svg">
+      <img alt="Showreel" src="assets/showreel-dark.svg" width="60%">
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="assets/showreel.mp4"><img alt="Watch the MP4" src="https://img.shields.io/badge/▶-watch%20the%20MP4-8b5cf6?style=for-the-badge"></a>
+</p>
+
 <img src="assets/divider.svg" width="100%" alt="">
 
 <!-- ══════════════════════════ ABOUT ══════════════════════════ -->
@@ -193,7 +211,7 @@ const junior = {
 </p>
 
 <p align="center">
-  <img alt="Trophies" src="https://github-profile-trophy.vercel.app/?username=jsticks779&theme=algolia&no-frame=true&no-bg=true&column=7&margin-w=8&margin-h=8">
+  <img alt="Trophies" src="https://github-profile-trophy.vercel.app/?username=jsticks779&theme=nord&column=6&no-frame=true&margin-w=8&margin-h=8">
 </p>
 
 <p align="center">
@@ -211,20 +229,6 @@ const junior = {
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/jsticks779/jsticks779/output/github-snake.svg">
     <img alt="Contribution snake" src="https://raw.githubusercontent.com/jsticks779/jsticks779/output/github-snake-dark.svg" width="100%">
   </picture>
-</p>
-
-<img src="assets/divider.svg" width="100%" alt="">
-
-<!-- ══════════════════════════ REEL ══════════════════════════ -->
-
-## Showreel
-
-<p align="center">
-  <img alt="Showreel" src="assets/showreel.gif" width="100%">
-</p>
-
-<p align="center">
-  <a href="assets/showreel.mp4"><img alt="Watch the MP4" src="https://img.shields.io/badge/▶-watch%20the%20MP4-8b5cf6?style=for-the-badge"></a>
 </p>
 
 <img src="assets/divider.svg" width="100%" alt="">

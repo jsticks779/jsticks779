@@ -70,25 +70,16 @@ def marquee(p, out):
       {palette_css(p)}
       .pill{{fill:var(--chip);stroke:var(--chipStroke);stroke-width:1}}
       .ptxt{{font-family:{MONO};font-size:13.5px;fill:var(--ink)}}
+      .edge{{fill:var(--c1)}}
     ]]></style>
-    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="var(--bg0)" stop-opacity="1"/>
-      <stop offset=".08" stop-color="var(--bg0)" stop-opacity="0"/>
-      <stop offset=".92" stop-color="var(--bg0)" stop-opacity="0"/>
-      <stop offset="1" stop-color="var(--bg0)" stop-opacity="1"/>
-    </linearGradient>
-    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="var(--c1)"/><stop offset=".5" stop-color="var(--c2)"/><stop offset="1" stop-color="var(--c3)"/>
-    </linearGradient>
     <clipPath id="clip"><rect x="0" y="0" width="1200" height="116" rx="14"/></clipPath>
   </defs>
   <g clip-path="url(#clip)">
     <rect width="1200" height="116" fill="var(--bg1)"/>
     {row_a}
     {row_b}
-    <rect width="1200" height="116" fill="url(#fade)"/>
-    <rect x="0" y="0" width="1200" height="2.5" fill="url(#edge)" opacity=".85"/>
-    <rect x="0" y="113.5" width="1200" height="2.5" fill="url(#edge)" opacity=".85"/>
+    <rect class="edge" x="0" y="0" width="1200" height="2.5"/>
+    <rect class="edge" x="0" y="113.5" width="1200" height="2.5"/>
     <rect x="0" y="0" width="1200" height="116" rx="14" fill="none" stroke="var(--stroke)" stroke-width="1.5"/>
   </g>
 </svg>
@@ -141,13 +132,8 @@ def card(c, p, out):
       .name{{font-family:{SANS};font-size:21px;font-weight:700;fill:var(--ink)}}
       .desc{{font-family:{SANS};font-size:13.5px;fill:var(--muted)}}
       .meta{{font-family:{MONO};font-size:12px;fill:var(--muted)}}
-      .glyph{{fill:none;stroke:url(#g);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;color:var(--c2)}}
-      .halo{{opacity:.14}}
+      .glyph{{fill:none;stroke:var(--c1);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;color:var(--c1)}}
     ]]></style>
-    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="{W}" y2="{H}">
-      <stop offset="0" stop-color="var(--c1)"/><stop offset=".55" stop-color="var(--c2)"/><stop offset="1" stop-color="var(--c3)"/>
-    </linearGradient>
-    <radialGradient id="halo"><stop offset="0" stop-color="var(--c2)" stop-opacity="1"/><stop offset="1" stop-color="var(--c2)" stop-opacity="0"/></radialGradient>
     <clipPath id="cc"><rect x="2" y="2" width="{W-4}" height="{H-4}" rx="16"/></clipPath>
   </defs>
   <g clip-path="url(#cc)">
@@ -155,12 +141,11 @@ def card(c, p, out):
     <rect x="2" y="2" width="{W-4}" height="{H-4}" rx="16" fill="var(--bg1)" opacity=".55"/>
 
     <g transform="translate(410,74)">
-      <circle class="halo" r="40" fill="url(#halo)"/>
       <g class="glyph">{ICONS[c['icon']]}</g>
     </g>
 
     <text class="name" x="28" y="52">{c['name']}</text>
-    <line x1="28" y1="66" x2="250" y2="66" stroke="url(#g)" stroke-width="1.5" opacity=".45"/>
+    <line x1="28" y1="66" x2="250" y2="66" stroke="var(--c1)" stroke-width="1.5" opacity=".45"/>
     <text class="desc" x="28" y="94">{c['desc1']}</text>
     <text class="desc" x="28" y="114">{c['desc2']}</text>
 
@@ -188,10 +173,8 @@ def footer(p, out):
       .t1{{font-family:{SANS};font-size:26px;font-weight:700;fill:var(--ink)}}
       .t2{{font-family:{SANS};font-size:16px;fill:var(--muted)}}
       .t3{{font-family:{MONO};font-size:14px;fill:var(--muted)}}
+      .bar{{fill:var(--c1)}}
     ]]></style>
-    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="var(--c1)"/><stop offset=".5" stop-color="var(--c2)"/><stop offset="1" stop-color="var(--c3)"/>
-    </linearGradient>
     <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
       <path d="M34 0H0V34" fill="none" stroke="var(--grid)" stroke-width="1"/>
     </pattern>
@@ -201,7 +184,7 @@ def footer(p, out):
   <text class="t1" x="600" y="72" text-anchor="middle">Junior Jovin — Full-Stack Engineer</text>
   <text class="t2" x="600" y="102" text-anchor="middle">open to collaborations, freelance work and open-source contributions</text>
   <text class="t3" x="600" y="128" text-anchor="middle">juniorjovin208@gmail.com</text>
-  <rect x="0" y="156" width="1200" height="4" fill="url(#g1)" opacity=".9"/>
+  <rect class="bar" x="0" y="156" width="1200" height="4"/>
 </svg>
 '''
     open(out, "w").write(svg)
@@ -212,14 +195,38 @@ def footer(p, out):
 # --------------------------------------------------------------------------- #
 def divider(out):
     svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 8" width="1200" height="8" role="img" aria-label="">
+  <rect x="0" y="3" width="1200" height="2.5" rx="1.25" fill="#64748b"/>
+</svg>
+'''
+    open(out, "w").write(svg)
+
+
+# --------------------------------------------------------------------------- #
+# 5. Showreel poster — a nearly-square, clickable placeholder linking to the MP4
+# --------------------------------------------------------------------------- #
+def showreel(p, out):
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700" role="img" aria-label="Showreel - a quick tour of the projects I build">
+  <title>Showreel</title>
   <defs>
-    <linearGradient id="d" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#22d3ee" stop-opacity="0"/>
-      <stop offset=".2" stop-color="#22d3ee"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset=".8" stop-color="#f472b6"/>
-      <stop offset="1" stop-color="#f472b6" stop-opacity="0"/>
-    </linearGradient>
+    <style><![CDATA[
+      {palette_css(p)}
+      .bezel{{fill:var(--bg0)}}
+      .panel{{fill:var(--bg1);stroke:var(--stroke);stroke-width:1.5}}
+      .label{{font-family:{MONO};font-size:15px;fill:var(--muted)}}
+      .ring{{fill:none;stroke:var(--c1);stroke-width:4}}
+      .tri{{fill:var(--c1)}}
+      .t1{{font-family:{SANS};font-size:26px;font-weight:700;fill:var(--ink)}}
+      .t2{{font-family:{MONO};font-size:14.5px;fill:var(--muted)}}
+    ]]></style>
   </defs>
-  <rect x="0" y="3" width="1200" height="2.5" rx="1.25" fill="url(#d)"/>
+  <rect class="bezel" width="800" height="700"/>
+  <rect class="panel" x="32" y="32" width="736" height="636" rx="28"/>
+  <text class="label" x="64" y="80">SHOWREEL — A QUICK TOUR</text>
+  <circle class="ring" cx="400" cy="360" r="74"/>
+  <path class="tri" d="M384 322 l70 38 -70 38Z"/>
+  <text class="t1" x="400" y="548" text-anchor="middle">A quick tour of the projects I build</text>
+  <text class="t2" x="400" y="580" text-anchor="middle">POS &middot; fintech &middot; Linux tools &middot; mobile</text>
+  <text class="t2" x="400" y="634" text-anchor="middle">click to play the demo</text>
 </svg>
 '''
     open(out, "w").write(svg)
@@ -231,6 +238,7 @@ if __name__ == "__main__":
     for tag, pal in (("dark", DARK), ("light", LIGHT)):
         marquee(pal, os.path.join(here, f"marquee-{tag}.svg"))
         footer(pal, os.path.join(here, f"footer-{tag}.svg"))
+        showreel(pal, os.path.join(here, f"showreel-{tag}.svg"))
         for c in CARDS:
             card(c, pal, os.path.join(here, "cards", f"{c['slug']}-{tag}.svg"))
     divider(os.path.join(here, "divider.svg"))

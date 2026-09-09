@@ -34,7 +34,8 @@ When it works, GitHub shows a small hint on the repo page: *"jsticks779/jsticks7
 │   ├── footer-dark.svg  footer-light.svg    sign-off / contact footer
 │   ├── divider.svg                          section rule
 │   ├── cards/*.svg                          one card per featured repo
-│   ├── showreel.gif / showreel.mp4          the reel in the README
+│   ├── showreel-dark.svg  showreel-light.svg  the reel poster in the README
+│   ├── showreel.mp4                          the reel itself
 │   └── _build_assets.py                     regenerates every SVG above
 └── .github/workflows/snake.yml   builds the contribution-snake animation
 ```
@@ -66,22 +67,22 @@ an `output` branch, which the README links to. First time:
 
 ## The showreel
 
-`assets/showreel.gif` (and the matching `.mp4`) is a recording of the hero animation. To swap
-in a real product demo instead — a screen recording of Sellin, jUNIODEV-UI, whatever:
+The README shows `assets/showreel-dark.svg` / `showreel-light.svg` — a nearly-square,
+clickable poster that links to `assets/showreel.mp4`. The MP4 is currently a short clip of
+the hero banner so the link never goes stale. To swap in a real product demo — a screen
+recording of Sellin, jUNIODEV-UI, whatever:
 
 ```bash
-# record, then keep it small — GitHub READMEs choke on huge GIFs
-ffmpeg -i demo.mp4 -vf "fps=15,scale=900:-1:flags=lanczos" -c:v libx264 -crf 28 assets/showreel.mp4
-ffmpeg -i assets/showreel.mp4 -vf "fps=12,scale=760:-1:flags=lanczos,split[a][b];[a]palettegen[p];[b][p]paletteuse" assets/showreel.gif
+# record, then keep it small — GitHub READMEs choke on huge files
+ffmpeg -i demo.mp4 -vf "fps=15,scale=900:-1:flags=lanczos" -c:v libx264 -crf 28 -movflags +faststart assets/showreel.mp4
 ```
 
-Keep the GIF under ~8 MB or the profile page feels slow on mobile data.
+Keep the MP4 under a few MB or the profile page feels slow on mobile data.
 
-## Rebuilding the reel from the hero animation
+## Rendering the current reel from an SVG
 
-`render-showreel.sh` renders the hero SVG frame by frame with headless Chrome (seeking each
-CSS animation through the Web Animations API, since headless Chrome's virtual clock does not
-advance animations on its own) and muxes the frames with ffmpeg.
+`render-showreel.sh` renders the hero SVG with headless Chrome and muxes the frames with
+ffmpeg into `assets/showreel.mp4`.
 
 ```bash
 ./render-showreel.sh
