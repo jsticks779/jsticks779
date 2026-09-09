@@ -23,19 +23,9 @@
 
 ## Showreel
 
-<p align="center">
-  <a href="assets/showreel.mp4">
-    <picture>
-      <source media="(prefers-color-scheme: dark)"  srcset="assets/showreel-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="assets/showreel-light.svg">
-      <img alt="Showreel" src="assets/showreel-dark.svg" width="60%">
-    </picture>
-  </a>
-</p>
-
-<p align="center">
-  <a href="assets/showreel.mp4"><img alt="Watch the MP4" src="https://img.shields.io/badge/▶-watch%20the%20MP4-8b5cf6?style=for-the-badge"></a>
-</p>
+<a href="assets/showreel.mp4">
+  <img alt="Showreel" src="assets/showreel.gif" width="100%">
+</a>
 
 <img src="assets/divider.svg" width="100%" alt="">
 
@@ -191,34 +181,38 @@ const junior = {
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-stats.vercel.app/api?username=jsticks779&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&title_color=22d3ee&icon_color=f472b6&text_color=c9d1d9&bg_color=0d1117">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=jsticks779&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&title_color=0891b2&icon_color=db2777&text_color=334155&bg_color=ffffff">
-    <img height="170" alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=jsticks779&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&theme=tokyonight">
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/stats-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/stats-light.svg">
+    <img height="170" alt="GitHub stats" src="assets/stats-dark.svg">
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)"  srcset="https://streak-stats.demolab.com?user=jsticks779&hide_border=true&ring=8b5cf6&fire=f472b6&currStreakLabel=22d3ee&background=0d1117&stroke=30363d&sideNums=c9d1d9&sideLabels=8ea0c4&dates=6e7681&currStreakNum=c9d1d9">
-    <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=jsticks779&hide_border=true&ring=7c3aed&fire=db2777&currStreakLabel=0891b2&background=ffffff&stroke=e2e8f0">
-    <img height="170" alt="Streak" src="https://streak-stats.demolab.com?user=jsticks779&hide_border=true&theme=tokyonight">
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/streak-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/streak-light.svg">
+    <img height="170" alt="Streak" src="assets/streak-dark.svg">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/top-langs-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/top-langs-light.svg">
+    <img height="165" alt="Top languages" src="assets/top-langs-dark.svg">
   </picture>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=jsticks779&layout=compact&langs_count=10&hide_border=true&title_color=22d3ee&text_color=c9d1d9&bg_color=0d1117">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=jsticks779&layout=compact&langs_count=10&hide_border=true&title_color=0891b2&text_color=334155&bg_color=ffffff">
-    <img height="165" alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jsticks779&layout=compact&langs_count=10&hide_border=true&theme=tokyonight">
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/trophy-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/trophy-light.svg">
+    <img alt="Trophies" src="assets/trophy-dark.svg" width="92%">
   </picture>
 </p>
 
 <p align="center">
-  <img alt="Trophies" src="https://github-profile-trophy.vercel.app/?username=jsticks779&theme=nord&column=6&no-frame=true&margin-w=8&margin-h=8">
-</p>
-
-<p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)"  srcset="https://github-readme-activity-graph.vercel.app/graph?username=jsticks779&hide_border=true&bg_color=0d1117&color=22d3ee&line=8b5cf6&point=f472b6&area=true&area_color=8b5cf6">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=jsticks779&hide_border=true&bg_color=ffffff&color=0891b2&line=7c3aed&point=db2777&area=true&area_color=7c3aed">
-    <img alt="Contribution graph" src="https://github-readme-activity-graph.vercel.app/graph?username=jsticks779&theme=tokyo-night&hide_border=true" width="100%">
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/graph-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/graph-light.svg">
+    <img alt="Contribution graph" src="assets/graph-dark.svg" width="100%">
   </picture>
 </p>
 

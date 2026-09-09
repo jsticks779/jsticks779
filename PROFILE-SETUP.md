@@ -34,10 +34,16 @@ When it works, GitHub shows a small hint on the repo page: *"jsticks779/jsticks7
 │   ├── footer-dark.svg  footer-light.svg    sign-off / contact footer
 │   ├── divider.svg                          section rule
 │   ├── cards/*.svg                          one card per featured repo
-│   ├── showreel-dark.svg  showreel-light.svg  the reel poster in the README
-│   ├── showreel.mp4                          the reel itself
-│   └── _build_assets.py                     regenerates every SVG above
-└── .github/workflows/snake.yml   builds the contribution-snake animation
+│   ├── showreel.mp4                          the reel (short hero clip)
+│   ├── showreel.gif                          auto-playing loop used in the README
+│   ├── stats-*.svg  streak-*.svg            generated cards (see cards.yml)
+│   ├── top-langs-*.svg  trophy-*.svg        generated cards (see cards.yml)
+│   ├── graph-*.svg                          generated contribution calendar
+│   └── _build_assets.py                     regenerates every static SVG
+├── scripts/profile-graph.py    generates the contribution calendars
+└── .github/workflows/
+    ├── snake.yml                builds the contribution-snake animation
+    └── cards.yml                rebuilds the stats/streak/trophy/graph cards
 ```
 
 ## Regenerating the SVGs
@@ -67,26 +73,42 @@ an `output` branch, which the README links to. First time:
 
 ## The showreel
 
-The README shows `assets/showreel-dark.svg` / `showreel-light.svg` — a nearly-square,
-clickable poster that links to `assets/showreel.mp4`. The MP4 is currently a short clip of
-the hero banner so the link never goes stale. To swap in a real product demo — a screen
-recording of Sellin, jUNIODEV-UI, whatever:
+`assets/showreel.gif` plays inline at the top of the README — an auto-looping clip that links
+to `assets/showreel.mp4` when clicked. It's currently a short clip of the hero banner so it
+never goes stale. To swap in a real product demo — a screen recording of Sellin, jUNIODEV-UI,
+whatever — replace the MP4 and regenerate the GIF:
 
 ```bash
-# record, then keep it small — GitHub READMEs choke on huge files
+# record, then keep both files small — GitHub READMEs choke on huge files
 ffmpeg -i demo.mp4 -vf "fps=15,scale=900:-1:flags=lanczos" -c:v libx264 -crf 28 -movflags +faststart assets/showreel.mp4
+ffmpeg -i assets/showreel.mp4 -vf "fps=12,scale=900:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=192[p];[b][p]paletteuse" assets/showreel.gif
 ```
-
-Keep the MP4 under a few MB or the profile page feels slow on mobile data.
 
 ## Rendering the current reel from an SVG
 
-`render-showreel.sh` renders the hero SVG with headless Chrome and muxes the frames with
-ffmpeg into `assets/showreel.mp4`.
+`render-showreel.sh` screenshots the hero SVG with headless Chrome, then muxes a slow cinematic
+zoom into `assets/showreel.mp4` and re-derives `assets/showreel.gif`.
 
 ```bash
 ./render-showreel.sh
 ```
+
+## The cards (stats, streak, trophies, graph)
+
+The stats/streak/top-langs/trophy/graph widgets no longer point at the public
+`*.vercel.app` services — those run on shared free tiers that get disabled (the trophy and
+stats endpoints were returning `402`/`503` at the time of writing), and the README would show
+broken images. `.github/workflows/cards.yml` instead generates them **inside GitHub Actions**
+from the repo's own `GITHUB_TOKEN` and commits the SVGs back to `assets/`:
+
+- **stats / top-langs** → `stats-organization/github-readme-stats-action`
+- **streak** → `DenverCoder1/github-readme-streak-stats`
+- **trophies** → `ryo-ma/github-profile-trophy` (pinned to master; v1.0 can't read stars)
+- **graph** → `scripts/profile-graph.py` (GraphQL, same endpoint the snake uses)
+
+First time: push the repo, then in the Actions tab enable workflows and run
+**Update profile cards** once by hand (or wait for the 03:17 daily schedule). Until it has
+run, those images in the README are broken links.
 
 ## Things to update when life changes
 

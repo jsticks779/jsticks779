@@ -201,44 +201,12 @@ def divider(out):
     open(out, "w").write(svg)
 
 
-# --------------------------------------------------------------------------- #
-# 5. Showreel poster — a nearly-square, clickable placeholder linking to the MP4
-# --------------------------------------------------------------------------- #
-def showreel(p, out):
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700" role="img" aria-label="Showreel - a quick tour of the projects I build">
-  <title>Showreel</title>
-  <defs>
-    <style><![CDATA[
-      {palette_css(p)}
-      .bezel{{fill:var(--bg0)}}
-      .panel{{fill:var(--bg1);stroke:var(--stroke);stroke-width:1.5}}
-      .label{{font-family:{MONO};font-size:15px;fill:var(--muted)}}
-      .ring{{fill:none;stroke:var(--c1);stroke-width:4}}
-      .tri{{fill:var(--c1)}}
-      .t1{{font-family:{SANS};font-size:26px;font-weight:700;fill:var(--ink)}}
-      .t2{{font-family:{MONO};font-size:14.5px;fill:var(--muted)}}
-    ]]></style>
-  </defs>
-  <rect class="bezel" width="800" height="700"/>
-  <rect class="panel" x="32" y="32" width="736" height="636" rx="28"/>
-  <text class="label" x="64" y="80">SHOWREEL — A QUICK TOUR</text>
-  <circle class="ring" cx="400" cy="360" r="74"/>
-  <path class="tri" d="M384 322 l70 38 -70 38Z"/>
-  <text class="t1" x="400" y="548" text-anchor="middle">A quick tour of the projects I build</text>
-  <text class="t2" x="400" y="580" text-anchor="middle">POS &middot; fintech &middot; Linux tools &middot; mobile</text>
-  <text class="t2" x="400" y="634" text-anchor="middle">click to play the demo</text>
-</svg>
-'''
-    open(out, "w").write(svg)
-
-
 if __name__ == "__main__":
     here = os.path.dirname(os.path.abspath(__file__))
     os.makedirs(os.path.join(here, "cards"), exist_ok=True)
     for tag, pal in (("dark", DARK), ("light", LIGHT)):
         marquee(pal, os.path.join(here, f"marquee-{tag}.svg"))
         footer(pal, os.path.join(here, f"footer-{tag}.svg"))
-        showreel(pal, os.path.join(here, f"showreel-{tag}.svg"))
         for c in CARDS:
             card(c, pal, os.path.join(here, "cards", f"{c['slug']}-{tag}.svg"))
     divider(os.path.join(here, "divider.svg"))

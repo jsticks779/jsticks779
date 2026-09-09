@@ -1,0 +1,118 @@
+name: Update profile cards
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/cards.yml"
+      - "scripts/profile-graph.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cards
+  cancel-in-progress: false
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      # ---- GitHub stats card ------------------------------------------------
+      - name: Stats (dark)
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
+        with:
+          card: stats
+          options: "username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&hide_border=true&title_color=22d3ee&icon_color=f472b6&text_color=c9d1d9&bg_color=0d1117"
+          path: assets/stats-dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Stats (light)
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
+        with:
+          card: stats
+          options: "username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&hide_border=true&title_color=0891b2&icon_color=db2777&text_color=334155&bg_color=ffffff"
+          path: assets/stats-light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---- Top languages card ------------------------------------------------
+      - name: Top languages (dark)
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
+        with:
+          card: top-langs
+          options: "username=${{ github.repository_owner }}&layout=compact&langs_count=10&hide_border=true&title_color=22d3ee&text_color=c9d1d9&bg_color=0d1117"
+          path: assets/top-langs-dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Top languages (light)
+        uses: stats-organization/github-readme-stats-action@e856fc8de9d7729b463c468911e232cfbdc3d55e # v2.0.2
+        with:
+          card: top-langs
+          options: "username=${{ github.repository_owner }}&layout=compact&langs_count=10&hide_border=true&title_color=0891b2&text_color=334155&bg_color=ffffff"
+          path: assets/top-langs-light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---- Streak card ------------------------------------------------------
+      - name: Streak (dark)
+        uses: DenverCoder1/github-readme-streak-stats@51cfb8879073b4c016ce6286016de0b14d179077 # v1.7.0
+        with:
+          options: "user=${{ github.repository_owner }}&ring=8b5cf6&fire=f472b6&currStreakLabel=22d3ee&background=0d1117&stroke=30363d&sideNums=c9d1d9&sideLabels=8ea0c4&dates=6e7681&currStreakNum=c9d1d9"
+          path: assets/streak-dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Streak (light)
+        uses: DenverCoder1/github-readme-streak-stats@51cfb8879073b4c016ce6286016de0b14d179077 # v1.7.0
+        with:
+          options: "user=${{ github.repository_owner }}&ring=7c3aed&fire=db2777&currStreakLabel=0891b2&background=ffffff&stroke=e2e8f0"
+          path: assets/streak-light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---- Trophies ---------------------------------------------------------
+      # The public github-profile-trophy.vercel.app instance 402s (its free
+      # deployment got disabled). Pinned to master: v1.0 stars the stargazers
+      # query that repo-scoped tokens can no longer read; master uses
+      # stargazerCount (0dbd570).
+      - name: Trophies (dark)
+        uses: ryo-ma/github-profile-trophy@e3c89df995e92e67cdd4b2acaab9d974583dc1f7 # master
+        continue-on-error: true
+        with:
+          username: ${{ github.repository_owner }}
+          output_path: assets/trophy-dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          theme: nord
+
+      - name: Trophies (light)
+        uses: ryo-ma/github-profile-trophy@e3c89df995e92e67cdd4b2acaab9d974583dc1f7 # master
+        continue-on-error: true
+        with:
+          username: ${{ github.repository_owner }}
+          output_path: assets/trophy-light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          theme: light
+
+      # ---- Contribution graph ------------------------------------------------
+      # Uses GraphQL (the same call the snake generator makes), so GITHUB_TOKEN
+      # is enough — no extra secrets.
+      - name: Contribution graph
+        run: python3 scripts/profile-graph.py "${{ github.repository_owner }}" --token "${{ secrets.GITHUB_TOKEN }}"
+        continue-on-error: true
+
+      # ---- Commit whatever changed ------------------------------------------
+      - name: Commit generated cards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update profile cards"
+            git push
+          fi
