@@ -7,6 +7,14 @@
   </picture>
 </p>
 
+<!-- ══════════════════════════ REEL ══════════════════════════ -->
+
+## Showreel
+
+<a href="assets/showreel.mp4">
+  <img alt="Showreel" src="assets/showreel.gif" width="100%">
+</a>
+
 <p align="center">
   <a href="https://github.com/jsticks779?tab=repositories"><img alt="Repositories" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2Fjsticks779&query=%24.public_repos&label=public%20repos&color=22d3ee&style=for-the-badge&logo=github&logoColor=white"></a>
   <a href="https://github.com/jsticks779?tab=followers"><img alt="Followers" src="https://img.shields.io/github/followers/jsticks779?style=for-the-badge&color=8b5cf6&logo=github&logoColor=white&label=followers"></a>
@@ -18,14 +26,6 @@
   <a href="https://github.com/jsticks779"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-jsticks779-181717?style=flat-square&logo=github&logoColor=white"></a>
   <img alt="Open to work" src="https://img.shields.io/badge/Open%20to-Collaboration%20%C2%B7%20Freelance-10b981?style=flat-square">
 </p>
-
-<!-- ══════════════════════════ REEL ══════════════════════════ -->
-
-## Showreel
-
-<a href="assets/showreel.mp4">
-  <img alt="Showreel" src="assets/showreel.gif" width="100%">
-</a>
 
 <img src="assets/divider.svg" width="100%" alt="">
 
@@ -68,30 +68,11 @@ const junior = {
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)"  srcset="assets/marquee-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/marquee-light.svg">
-    <img alt="Tech stack" src="assets/marquee-dark.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)"  srcset="assets/stack-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.svg">
+    <img alt="Tech stack" src="assets/stack-dark.svg" width="100%">
   </picture>
 </p>
-
-<p align="center">
-  <img alt="Languages & frameworks" src="https://skillicons.dev/icons?i=ts,js,react,nodejs,express,prisma,postgres,redis,tailwind,vite&theme=dark">
-  <br>
-  <img alt="Tooling" src="https://skillicons.dev/icons?i=python,php,mysql,docker,linux,bash,git,figma,vercel,cloudflare&theme=dark">
-</p>
-
-<div align="center">
-
-| Layer | What I reach for first |
-|---|---|
-| **Frontend** | React 18/19 · TypeScript · Tailwind · Vite · Zustand · Framer Motion |
-| **Backend** | Node.js · Express 5 · Prisma · Zod · Socket.IO · Bull |
-| **Data** | PostgreSQL · Redis · MySQL |
-| **Mobile** | React Native · Expo · PWA |
-| **Infra** | Docker · Coolify · Vercel · GitHub Actions · Nginx |
-| **Desktop / systems** | Python · PyQt5 · Bash · systemd · hostapd |
-
-</div>
 
 <img src="assets/divider.svg" width="100%" alt="">
 

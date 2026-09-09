@@ -34,61 +34,7 @@ def palette_css(p):
 
 
 # --------------------------------------------------------------------------- #
-# 1. Tech marquee — a seamless scrolling strip of the stack
-# --------------------------------------------------------------------------- #
-ROW_A = ["TypeScript", "React", "Node.js", "Express", "Prisma", "PostgreSQL",
-         "Redis", "Tailwind", "Vite", "Socket.IO", "Zustand", "Framer Motion"]
-ROW_B = ["Python", "FastAPI", "React Native", "Expo", "Docker", "Linux",
-         "Bash", "PHP", "MySQL", "Gemini API", "Solidity", "Figma"]
-
-PILL_PAD, PILL_H, GAP, CHAR_W = 18, 34, 12, 8.1
-
-
-def marquee(p, out):
-    def build_row(items, y):
-        pills, x = [], 0
-        for it in items:
-            w = len(it) * CHAR_W + PILL_PAD * 2
-            pills.append(
-                f'<g transform="translate({x:.1f},0)">'
-                f'<rect class="pill" x="0" y="0" width="{w:.1f}" height="{PILL_H}" rx="{PILL_H/2}"/>'
-                f'<text class="ptxt" x="{w/2:.1f}" y="{PILL_H/2 + 5:.1f}" text-anchor="middle">{it}</text>'
-                f'</g>')
-            x += w + GAP
-        span = x
-        body = "".join(pills)
-        x0 = max((1200 - span) / 2, 0)
-        return f'<g transform="translate({x0:.1f},{y})">{body}</g>'
-
-    row_a = build_row(ROW_A, 16)
-    row_b = build_row(ROW_B, 66)
-
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 116" width="1200" height="116" role="img" aria-label="Tech stack">
-  <title>Stack</title>
-  <defs>
-    <style><![CDATA[
-      {palette_css(p)}
-      .pill{{fill:var(--chip);stroke:var(--chipStroke);stroke-width:1}}
-      .ptxt{{font-family:{MONO};font-size:13.5px;fill:var(--ink)}}
-      .edge{{fill:var(--c1)}}
-    ]]></style>
-    <clipPath id="clip"><rect x="0" y="0" width="1200" height="116" rx="14"/></clipPath>
-  </defs>
-  <g clip-path="url(#clip)">
-    <rect width="1200" height="116" fill="var(--bg1)"/>
-    {row_a}
-    {row_b}
-    <rect class="edge" x="0" y="0" width="1200" height="2.5"/>
-    <rect class="edge" x="0" y="113.5" width="1200" height="2.5"/>
-    <rect x="0" y="0" width="1200" height="116" rx="14" fill="none" stroke="var(--stroke)" stroke-width="1.5"/>
-  </g>
-</svg>
-'''
-    open(out, "w").write(svg)
-
-
-# --------------------------------------------------------------------------- #
-# 2. Project cards
+# 1. Project cards
 # --------------------------------------------------------------------------- #
 CARDS = [
     dict(slug="hotspot", name="Hotspot on Linux", lang="Shell", langc="#89e051", stars="2",
@@ -201,11 +147,82 @@ def divider(out):
     open(out, "w").write(svg)
 
 
+# --------------------------------------------------------------------------- #
+# 5. Stack card — the full toolkit, grouped by layer
+# --------------------------------------------------------------------------- #
+STACK_GROUPS = [
+    ("Frontend",         [("React", "#61dafb"), ("TypeScript", "#3178c6"), ("Tailwind", "#38bdf8"),
+                          ("Vite", "#646cff"), ("Zustand", "#ca8a04"), ("Framer Motion", "#f472b6")]),
+    ("Backend",          [("Node.js", "#339933"), ("Express", "#9aa0a6"), ("Prisma", "#0d9488"),
+                          ("Zod", "#6366f1"), ("Socket.IO", "#64748b"), ("Bull", "#ef4444")]),
+    ("Data",             [("PostgreSQL", "#336791"), ("Redis", "#dc2626"), ("MySQL", "#00758f")]),
+    ("Mobile",           [("React Native", "#61dafb"), ("Expo", "#1e293b"), ("PWA", "#8b5cf6")]),
+    ("Infra",            [("Docker", "#2496ed"), ("Coolify", "#2dd4bf"), ("Vercel", "#9aa0a6"),
+                          ("GitHub Actions", "#2088ff"), ("Nginx", "#009639")]),
+    ("Desktop & systems", [("Python", "#3572A5"), ("PyQt5", "#41cd52"), ("Bash", "#4eaa25"),
+                           ("systemd", "#8b5cf6"), ("hostapd", "#f59e0b")]),
+]
+LCOL, PILL_H, PILL_GAP = 208, 32, 10
+MAX_X = 1176
+
+
+def esc(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def stack(p, out):
+    def pill(name, color, x, y):
+        w = len(name) * 7.6 + 38
+        return (f'<rect class="chip" x="{x}" y="{y}" width="{w}" height="{PILL_H}" rx="16"/>'
+                f'<circle cx="{x + 13}" cy="{y + PILL_H / 2}" r="4" fill="{color}"/>'
+                f'<text class="chipT" x="{x + 26}" y="{y + 21}">{esc(name)}</text>')
+
+    y = 74
+    bodies = []
+    for label, items in STACK_GROUPS:
+        x, line_y = LCOL, y
+        parts = []
+        for name, color in items:
+            w = len(name) * 7.6 + 38
+            if x + w > MAX_X:
+                x, line_y = LCOL, line_y + PILL_H + 6
+            parts.append(pill(name, color, x, line_y))
+            x += w + PILL_GAP
+        bodies.append(f'<text class="lbl" x="26" y="{line_y + 21}">{esc(label)}</text>')
+        bodies.extend(parts)
+        y = line_y + PILL_H + 6 + 12
+    height = y + 16
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 {height}" width="1200" height="{height}" role="img" aria-label="Tech stack grouped by layer">
+  <title>Tech stack</title>
+  <defs>
+    <style><![CDATA[
+      {palette_css(p)}
+      .chip{{fill:var(--chip);stroke:var(--chipStroke);stroke-width:1}}
+      .chipT{{font-family:{MONO};font-size:12.5px;fill:var(--ink)}}
+      .lbl{{font-family:{SANS};font-size:15px;font-weight:600;fill:var(--ink)}}
+      .hdr{{font-family:{MONO};font-size:13.5px;fill:var(--muted)}}
+    ]]></style>
+    <clipPath id="cc"><rect x="1" y="1" width="1198" height="{height - 2}" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#cc)">
+    <rect x="1" y="1" width="1198" height="{height - 2}" rx="14" fill="var(--bg1)"/>
+    <text class="hdr" x="26" y="44">THE STACK I BUILD WITH</text>
+    <text class="hdr" x="1174" y="44" text-anchor="end">FULL-STACK · MOBILE · SYSTEMS</text>
+    <line x1="26" y1="58" x2="1174" y2="58" stroke="var(--stroke)" stroke-width="1"/>
+    {''.join(bodies)}
+  </g>
+  <rect x="1" y="1" width="1198" height="{height - 2}" rx="14" fill="none" stroke="var(--stroke)" stroke-width="1.5"/>
+</svg>
+'''
+    open(out, "w").write(svg)
+
+
 if __name__ == "__main__":
     here = os.path.dirname(os.path.abspath(__file__))
     os.makedirs(os.path.join(here, "cards"), exist_ok=True)
     for tag, pal in (("dark", DARK), ("light", LIGHT)):
-        marquee(pal, os.path.join(here, f"marquee-{tag}.svg"))
+        stack(pal, os.path.join(here, f"stack-{tag}.svg"))
         footer(pal, os.path.join(here, f"footer-{tag}.svg"))
         for c in CARDS:
             card(c, pal, os.path.join(here, "cards", f"{c['slug']}-{tag}.svg"))

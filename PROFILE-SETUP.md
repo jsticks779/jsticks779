@@ -30,7 +30,7 @@ When it works, GitHub shows a small hint on the repo page: *"jsticks779/jsticks7
 ├── README.md                     the profile page itself
 ├── assets/
 │   ├── hero-dark.svg  hero-light.svg        hero banner
-│   ├── marquee-dark.svg  marquee-light.svg  static tech strip
+│   ├── stack-dark.svg  stack-light.svg      the tech stack card
 │   ├── footer-dark.svg  footer-light.svg    sign-off / contact footer
 │   ├── divider.svg                          section rule
 │   ├── cards/*.svg                          one card per featured repo
@@ -113,5 +113,5 @@ run, those images in the README are broken links.
 ## Things to update when life changes
 
 - `README.md` → the `now.md` list, the "Also in the workshop" table, socials
-- `assets/_build_assets.py` → `CARDS` (featured repos) and the marquee rows
+- `assets/_build_assets.py` → `CARDS` (featured repos) and `STACK_GROUPS` (the stack card)
 - stars/languages on the cards are written by hand — they don't self-update
